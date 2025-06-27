@@ -114,9 +114,7 @@ public class ProfilePage  extends BasePage {
         return isDislikeMessageVisible;
     }
 
-
     public void closePostModal() {
-
 
     }
 }

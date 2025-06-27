@@ -11,12 +11,15 @@ import java.time.format.DateTimeFormatter;
 
 public class RegistrationPage extends BasePage {
 
-    public static final String REG_PAGE_SUFIX = "/users/register";
+    public static final String REG_PAGE_SUFFIX = "/users/register";
     private static final String EXPECTED_REG_FORM_HEADER_TEXT = "Sign up";
     private static final String EXPECTED_REG_MSG = "Successful register!";
 
     //2.LOCATORS
     //Registration form
+    @FindBy(css = "p.h4")
+    private WebElement regFormTitle;
+
     @FindBy(xpath = "//input[contains(@name, \"username\")]") // = driver.findElement(By.xpath(USERNAME_REG_INPUT_FIELD_XPATH));
     private WebElement regUsernameInputField;
 
@@ -38,6 +41,9 @@ public class RegistrationPage extends BasePage {
     @FindBy (id = "sign-in-button" )
     private WebElement registrationFormSubmitButton;
 
+    @FindBy(xpath = "//div[contains(@aria-label,\"Successful registration!\")]")
+    private WebElement successfulRegistrationToastMessage;
+
     public RegistrationPage(WebDriver driver, Logger log) {
         super(driver, log);
         PageFactory.initElements(driver,this);
@@ -45,7 +51,7 @@ public class RegistrationPage extends BasePage {
 
     // Navigation to the page
     public void navigateToRegistrationPageByURL(){
-        navigateTo(REG_PAGE_SUFIX);
+        navigateTo(REG_PAGE_SUFFIX);
     }
 
     //User Actions
@@ -79,7 +85,6 @@ public class RegistrationPage extends BasePage {
         clickOn(registrationFormSubmitButton);
     }
 
-
     //Support methods for reg page
     public String getCurrentTime() {
         LocalDateTime now = LocalDateTime.now();
@@ -88,8 +93,15 @@ public class RegistrationPage extends BasePage {
         return formattedDateTime;
     }
 
-
     //Support utils for test data gen
+    public String getRegPageTitle() {
+        return driver.getTitle();
+    }
+
+    public String getRegFormHeaderText() {
+        return getElementText(regFormTitle);
+    }
+
     public String demoUsername() {
         String username = "Demo" + getCurrentTime();
         return username;
@@ -98,5 +110,13 @@ public class RegistrationPage extends BasePage {
     public String randomValidEmail() {
         String email = "demo" + getCurrentTime() + "@gmail.com";
         return email;
+    }
+
+    public Boolean isRegFormSuccessMessageShown() {
+        return isElementPresented(successfulRegistrationToastMessage);
+    }
+
+    public String getRegFormSuccessMessageText() {
+        return getElementText(successfulRegistrationToastMessage);
     }
 }
