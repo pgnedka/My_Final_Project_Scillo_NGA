@@ -79,7 +79,7 @@ public class LoginPage extends BasePage {
         return getElementText(loginSubmitButton);
     }
 
-    public String getLoginPageToastSuccessfulMsg(){
+    public String getLoginPageToastSuccessfulMsg() {
         return getElementText(signInToastMessage);
     }
 

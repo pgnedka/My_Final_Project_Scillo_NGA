@@ -1,8 +1,6 @@
 package org.nedka.POM;
 
 import org.apache.logging.log4j.Logger;
-import org.nedka.POM.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +23,7 @@ public class HomePage extends BasePage {
     private WebElement navBarLoginLink;
 
     @FindBy(id = "nav-link-profile")
-    private WebElement navBarProfileLink;
+    private WebElement navBarProfile;
 
     @FindBy(id = "nav-link-new-post")
     private WebElement navBarNewPostLink;
@@ -36,42 +34,56 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//i[contains(@class,'fas fa-sign-out-alt fa-lg')]")
     private WebElement logOutButton;
 
+    @FindBy(xpath = "//*[contains(@class, 'navbarColor01')]/form/div")
+    private WebElement dropDownSearchResults;
+
     //4. CONSTRUCTOR
-    public HomePage (WebDriver driver, Logger log){
+    public HomePage (WebDriver driver, Logger log) {
         super(driver, log);
         PageFactory.initElements(driver,this);
     }
 
     //5. BASIC NAVIGATION
-   public void navigateToHomePage(){
+   public void navigateToHomePage() {
         navigateTo(HOME_PAGE_SUFFIX);
     }
 
     //6. USER ACTIONS
-    public void clickOnHomeNavBar(){
+    public void clickOnHomeNavBar() {
         wait.until(ExpectedConditions.visibilityOf(navBarHomeLink));
         navBarHomeLink.click();
     }
 
-    public void clickOnLogOutButton(){
+    public void clickOnLogOutButton() {
         clickOn(logOutButton);
     }
 
-    public void clickOnProfileNavBar(){
-        clickOn(navBarProfileLink);
+    public void clickOnProfileNavBar() {
+        clickOn(navBarProfile);
     }
 
-    public void clickOnNewPostNavBar(){
+    public void clickOnNewPostNavBar() {
         clickOn(navBarNewPostLink);
     }
 
-    public void clickOnLoginNavBar(){
+    public void clickOnLoginNavBar() {
         wait.until(ExpectedConditions.visibilityOf(navBarLoginLink));
         navBarLoginLink.click();
     }
 
+    public void clickOnSearchBar() {
+        wait.until(ExpectedConditions.visibilityOf(searchBarInput));
+        searchBarInput.click();
+    }
 
-    // 6.1. Click on some chosen navigation link
+    public void setSearchBarInput() {
+        provideText(searchBarInput, "DemoMe1");
+    }
+
+    public void clickOnDropDownSearchResult() {
+        wait.until(ExpectedConditions.visibilityOf(dropDownSearchResults));
+        clickOn(dropDownSearchResults);
+    }
 
     //SUPPORT METHODS
     public boolean isNavHomeShown() {
@@ -83,22 +95,24 @@ public class HomePage extends BasePage {
     }
 
     public boolean isNavBarProfileLinkShown() {
-        return isElementPresented(navBarProfileLink);
+        System.out.println("We are checking profile link shown status");
+        System.out.println(navBarProfile);
+        return isElementPresented(navBarProfile);
+    }
+
+    public boolean isDropDownSearchResultsShown() {
+        return isElementPresented(dropDownSearchResults);
     }
 
     public boolean isNavBarNewPostLinkShown() {
         return isElementPresented(navBarNewPostLink);
     }
 
-    public boolean isSearchInputInputShown(){
+    public boolean isSearchInputShown(){
         return isElementPresented(searchBarInput);
     }
 
     public boolean isLogOutButtonShown(){
         return isElementPresented(logOutButton);
     }
-
-    //GEtters
-    //Boolean - > logout btn missing when user not successfully logedin
-
 }

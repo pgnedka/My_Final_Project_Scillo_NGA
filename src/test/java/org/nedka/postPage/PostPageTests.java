@@ -34,6 +34,8 @@ public class PostPageTests extends BaseTest {
         Assert.assertTrue(isLogOutButtonPresented);
 
         log.info("STEP 2: Click on [New Post] header link");
+        boolean isNewPostLinkPresented = homePage.isNavBarNewPostLinkShown();
+        Assert.assertTrue(isNewPostLinkPresented);
         homePage.clickOnNewPostNavBar();
 
         log.info("Step 2.1: Verify the New Post page header text.");

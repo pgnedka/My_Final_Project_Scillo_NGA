@@ -1,5 +1,6 @@
 package org.nedka.registration;
 
+import org.nedka.POM.HomePage;
 import org.nedka.POM.RegistrationPage;
 import org.nedka.base.BaseTest;
 import org.testng.Assert;
@@ -10,7 +11,6 @@ public class RegistrationTests extends BaseTest {
     private static final String REGISTER_PAGE_TITLE = "ISkillo";
     private static final String EXPECTED_REGISTER_FORM_HEADER_TEXT = "Sign up";
     private static final String EXPECTED_REGISTER_SUCCESSFUL_MESSAGE = "Successful register!";
-    private static final String HOMEPAGE_TITLE = "ISkillo";
 
     @Test
     public void registerWithValidData() throws InterruptedException {
@@ -54,13 +54,10 @@ public class RegistrationTests extends BaseTest {
         String actualSuccessfulRegistrationToastMsg = registrationPage.getRegFormSuccessMessageText();
         Assert.assertEquals(actualSuccessfulRegistrationToastMsg, EXPECTED_REGISTER_SUCCESSFUL_MESSAGE);
 
-        //Step 4: Verify success message is presented to the user
-        //
-        //Step 5: All post page (http://training.skillo-bg.com:4300/posts/all)
-        //    4.1: verify user is redirected to user suggestions page
-        //    4.2: verify that the Logout button is visible
-        //    4.3: verify "Profile" is visible in navigation bar
-        //    4.4: verify the user is not existed
+        log.info("STEP 5: Verify user is logged in");
+        HomePage homePage = new HomePage(super.driver, log);
+        boolean isLogOutButtonPresented = homePage.isLogOutButtonShown();
+        Assert.assertTrue(isLogOutButtonPresented);
 
         Thread.sleep(3000);
         System.out.println("The end!");

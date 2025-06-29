@@ -12,12 +12,10 @@ import java.time.format.DateTimeFormatter;
 public class RegistrationPage extends BasePage {
 
     public static final String REG_PAGE_SUFFIX = "/users/register";
-    private static final String EXPECTED_REG_FORM_HEADER_TEXT = "Sign up";
-    private static final String EXPECTED_REG_MSG = "Successful register!";
 
     //2.LOCATORS
     //Registration form
-    @FindBy(css = "p.h4")
+    @FindBy(xpath = "//h4")
     private WebElement regFormTitle;
 
     @FindBy(xpath = "//input[contains(@name, \"username\")]") // = driver.findElement(By.xpath(USERNAME_REG_INPUT_FIELD_XPATH));
@@ -42,7 +40,7 @@ public class RegistrationPage extends BasePage {
     private WebElement registrationFormSubmitButton;
 
     @FindBy(xpath = "//div[contains(@aria-label,\"Successful registration!\")]")
-    private WebElement successfulRegistrationToastMessage;
+    private WebElement successfulRegistrationToastMsg;
 
     public RegistrationPage(WebDriver driver, Logger log) {
         super(driver, log);
@@ -79,7 +77,7 @@ public class RegistrationPage extends BasePage {
 
     public void providePublicInfo(){
         provideText(publicInfoTextArea,"Public profile");
-    };
+    }
 
     public void clickOnSubmitBtn(){
         clickOn(registrationFormSubmitButton);
@@ -103,7 +101,7 @@ public class RegistrationPage extends BasePage {
     }
 
     public String demoUsername() {
-        String username = "Demo" + getCurrentTime();
+        String username = "DemoMe" + getCurrentTime();
         return username;
     }
 
@@ -113,10 +111,10 @@ public class RegistrationPage extends BasePage {
     }
 
     public Boolean isRegFormSuccessMessageShown() {
-        return isElementPresented(successfulRegistrationToastMessage);
+        return isElementPresented(successfulRegistrationToastMsg);
     }
 
     public String getRegFormSuccessMessageText() {
-        return getElementText(successfulRegistrationToastMessage);
+        return getElementText(successfulRegistrationToastMsg);
     }
 }

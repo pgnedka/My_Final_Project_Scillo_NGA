@@ -45,11 +45,11 @@ public abstract class BasePage {
 
     //Support methods for interacting with ELM text and attributes
     //TEXT Interactions
-    public String getElementText(WebElement element){
+    public String getElementText(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         String elementText = element.getText();
 
-        log.info("# CONFIRM THE WEB ELEMENT TEXT IS " + elementText);
+        log.info("# CONFIRM THE WEB ELEMENT TEXT IS: " + elementText);
         return elementText;
     }
 
@@ -70,7 +70,7 @@ public abstract class BasePage {
     }
 
     // VERIFICATIONS BOOLEANS
-    public boolean isElementPresented(WebElement element){
+    public boolean isElementPresented(WebElement element) {
         boolean isWebElementShown = false;
         String locatorInfo = locatorInfo(element);
 
@@ -99,12 +99,14 @@ public abstract class BasePage {
         return isElementClickable;
     }
 
-    private String locatorInfo(WebElement elm ){
-        String[] rawWebElmInfo = elm.toString().split("->");
-        String[] webElmInfo = rawWebElmInfo[1].split(":");
-        String locatorStrategy = webElmInfo[0];
-        String locatorExpression = webElmInfo[1];
-        String info = "LOCATOR STRATEGY BY : "+ locatorStrategy.toUpperCase() + " WITH LOCATOR EXPRESSION"+ locatorExpression;
+    private String locatorInfo(WebElement elm) {
+
+//        String[] rawWebElmInfo = elm.toString().split("->");
+//        String[] webElmInfo = rawWebElmInfo[1].split(":");
+//        String locatorStrategy = webElmInfo[0];
+//        String locatorExpression = webElmInfo[1];
+//        String info = "LOCATOR STRATEGY BY : "+ locatorStrategy.toUpperCase() + " WITH LOCATOR EXPRESSION"+ locatorExpression;
+        String info = "Web element is: " + elm;
         return info;
     }
 }
