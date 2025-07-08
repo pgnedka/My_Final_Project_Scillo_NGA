@@ -119,8 +119,6 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(super.driver, log);
         log.info("STEP 1: Not logged in user has opened the Skillo HomePage.");
         homePage.navigateToHomePage();
-
-        log.info("Step 1.1.Verify the user is on the home page.");
         String actualHomePageTitle = driver.getTitle();
         Assert.assertEquals(actualHomePageTitle,HOMEPAGE_TITLE);
 

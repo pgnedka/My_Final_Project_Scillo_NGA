@@ -10,8 +10,7 @@ import java.util.List;
 
 public class ProfilePage  extends BasePage {
 
-
-    @FindBy (xpath = "//div[contains(@class,'edit-profile-pic ')]")
+    @FindBy (xpath = "//div[contains(@class,'edit-profile-pic')]")
     private WebElement uploadImage;
     @FindBy (id = "upload-img" )
     private WebElement hiddenUploadImage;
@@ -47,7 +46,7 @@ public class ProfilePage  extends BasePage {
         clickOn(likeButton);
     }
 
-    public void ClickOnDisikeButton() {
+    public void ClickOnDislikeButton() {
         clickOn(dislikeButton);
     }
 
@@ -55,7 +54,6 @@ public class ProfilePage  extends BasePage {
     public void HoverOverProfilePicture () {
         action.moveToElement(uploadImage).perform();
     }
-
 
     public String getUsername() {
         WebElement username = driver.findElement(By.tagName("h2"));

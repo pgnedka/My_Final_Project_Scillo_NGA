@@ -11,7 +11,7 @@ import java.io.File;
 public class PostPage extends BasePage {
     final String POST_PAGE_SUFFIX = "/posts/create";
 
-    @FindBy(css = "p.h3")
+    @FindBy(css = "//h3")
     private WebElement newPostPageHeader;
 
     @FindBy(css = "img.image-preview")

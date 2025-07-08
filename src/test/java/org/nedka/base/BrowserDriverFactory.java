@@ -42,7 +42,7 @@ public class BrowserDriverFactory {
 
         ChromeOptions chromeOptions = new ChromeOptions();
 
-//        chromeOptions.addArguments("--incognito");
+//      chromeOptions.addArguments("--incognito");
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.setExperimentalOption("prefs", preferences);
         return chromeOptions;

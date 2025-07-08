@@ -19,7 +19,7 @@ public class PostPageTests extends BaseTest {
     public static final String EXPECTED_NEWPOST_CONFIRMATION_TOAST_MESSAGE = "Post created!";
 
     @Test
-    public void verifyUserCanFinishNewPost() throws InterruptedException {
+    public void verifyUserCanFinishNewPost() {
         PostPage postPage = new PostPage(super.driver, log);
         log.info("STEP 1: Verify the New post page is opened");
         postPage.navigateToPostPage();
@@ -53,7 +53,6 @@ public class PostPageTests extends BaseTest {
         String actualNewPostConfirmationMsg = postPage.getNewPostToastSuccessfulMsg();
         Assert.assertEquals(actualNewPostConfirmationMsg, EXPECTED_NEWPOST_CONFIRMATION_TOAST_MESSAGE);
 
-        Thread.sleep(3000);
         System.out.println("The end!");
     }
 }

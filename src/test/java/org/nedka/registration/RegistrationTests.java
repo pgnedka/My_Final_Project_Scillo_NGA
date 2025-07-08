@@ -13,7 +13,7 @@ public class RegistrationTests extends BaseTest {
     private static final String EXPECTED_REGISTER_SUCCESSFUL_MESSAGE = "Successful register!";
 
     @Test
-    public void registerWithValidData() throws InterruptedException {
+    public void registerWithValidData() {
 
         RegistrationPage registrationPage = new RegistrationPage(super.driver, log);//Взима драйвъра, който е инициилизиран в BasePage
         log.info("STEP 1: Unregistered user has opened the Skillo Registration Page.");
@@ -59,7 +59,6 @@ public class RegistrationTests extends BaseTest {
         boolean isLogOutButtonPresented = homePage.isLogOutButtonShown();
         Assert.assertTrue(isLogOutButtonPresented);
 
-        Thread.sleep(3000);
         System.out.println("The end!");
     }
 }

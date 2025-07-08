@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<!--suppress ALL -->
+<suite name="MySuite">
+    <test name="MyTest">
+        <classes>
+            <class name="org.nedka.homePage.HomePageTests"/>
+            <class name="org.nedka.login.LoginTests"/>
+            <class name="org.nedka.postPage.PostPageTests"/>
+            <class name="org.nedka.profile.ProfileTests"/>
+            <class name="org.nedka.registration.RegistrationTests"/>
+        </classes>
+    </test>
+</suite>

@@ -34,6 +34,7 @@ public class BaseTest {
     }
 
     @Parameters({"browser"})
+
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional("chrome") String browser, Method method) {
         String tafName = "NEDKA TAF";
@@ -50,7 +51,10 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(ITestResult testResult) {
+    public void tearDown(ITestResult testResult) throws IOException {
+        if (ITestResult.FAILURE == testResult.getStatus()) {
+            takeScreenshot(testResult);
+        }
         log.info("Closing the WebDriver");
         driver.quit();
     }
