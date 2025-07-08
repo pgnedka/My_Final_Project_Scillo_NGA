@@ -1,6 +1,7 @@
 package org.nedka.POM;
 
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +12,7 @@ import java.io.File;
 public class PostPage extends BasePage {
     final String POST_PAGE_SUFFIX = "/posts/create";
 
-    @FindBy(css = "//h3")
+    @FindBy(xpath = "//h3")
     private WebElement newPostPageHeader;
 
     @FindBy(css = "img.image-preview")
@@ -71,5 +72,18 @@ public class PostPage extends BasePage {
 
     public String getNewPostToastSuccessfulMsg(){
         return getElementText(newPostToastMessage);
+    }
+
+    public boolean isNewPostToastSuccessfulMsgVisible() {
+        boolean isNewPostToastSuccessfulMsgVisible = false;
+        try {
+            isNewPostToastSuccessfulMsgVisible = wait.until(ExpectedConditions.visibilityOf(newPostToastMessage)).isDisplayed();
+            log.info("CONFIRMATION # The Post! message is displayed.");
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+            log.error("ERROR : The Post Failed! message is not displayed!");
+            isNewPostToastSuccessfulMsgVisible = false;
+        }
+        return isNewPostToastSuccessfulMsgVisible;
     }
 }

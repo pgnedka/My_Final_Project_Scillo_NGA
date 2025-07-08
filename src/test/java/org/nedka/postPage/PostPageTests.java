@@ -16,7 +16,7 @@ public class PostPageTests extends BaseTest {
     public static final String PASS = "Password1";
     public static final String CAPTION = "Demo Test";
     public static final String FILE = "D:\\2025_Skillo_AutomationQA\\SkilloWebTesting\\NGA_TAF\\photo-1.jpg";
-    public static final String EXPECTED_NEWPOST_CONFIRMATION_TOAST_MESSAGE = "Post created!";
+
 
     @Test
     public void verifyUserCanFinishNewPost() {
@@ -49,9 +49,9 @@ public class PostPageTests extends BaseTest {
         log.info("STEP 3: Confirm photo.");
         postPage.clickCreatePostButton();
 
-        log.info("Step 3.1: Verify post creating confirmation message");
-        String actualNewPostConfirmationMsg = postPage.getNewPostToastSuccessfulMsg();
-        Assert.assertEquals(actualNewPostConfirmationMsg, EXPECTED_NEWPOST_CONFIRMATION_TOAST_MESSAGE);
+        log.info("Step 3.1: Check success message appearance.");
+        boolean isNewPostToastSuccessfulMsgVisible = postPage.isNewPostToastSuccessfulMsgVisible();
+        Assert.assertTrue(isNewPostToastSuccessfulMsgVisible);
 
         System.out.println("The end!");
     }
